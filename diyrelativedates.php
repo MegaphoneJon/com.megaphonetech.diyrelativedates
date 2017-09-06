@@ -3,6 +3,15 @@
 require_once 'diyrelativedates.civix.php';
 use CRM_Diyrelativedates_ExtensionUtil as E;
 
+function diyrelativedates_civicrm_relativeDate($filter) {
+  $filter = json_decode($filter);
+  if ($filter->type == 'diy') {
+    $filterObject = new CRM_Diyrelativedates($filter);
+    $dateRange = $filterObject->calculate();
+    return $dateRange;
+  }
+}
+
 /**
  * Implements hook_civicrm_config().
  *
